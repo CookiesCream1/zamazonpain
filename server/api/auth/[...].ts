@@ -1,5 +1,5 @@
-import GoogleProvider from "next-auth/providers/google";
-import { NuxtAuthHandler } from "#auth";
+import GoogleProvider from 'next-auth/providers/google';
+import { NuxtAuthHandler } from '#auth';
 
 export default NuxtAuthHandler({
   providers: [
@@ -10,18 +10,17 @@ export default NuxtAuthHandler({
     }),
   ],
   session: {
-    strategy: "jwt",
+    strategy: 'jwt',
   },
   callbacks: {
-    async jwt({ token, user, account }) {
+    jwt({ token, user, account }) {
       return {
         ...token,
         ...user,
         ...account,
       };
     },
-    async session({ session, token }) {
-      console.warn("Calling async session", session, token);
+    session({ session, token }) {
       session.user = {
         ...session.user,
         ...token,

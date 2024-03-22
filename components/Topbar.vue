@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { useUserStore } from '../data/User'
-const user = useUserStore()
+const user = useAuthState()
 </script>
 
 <template>
@@ -16,11 +15,11 @@ const user = useUserStore()
     <NuxtLink to="/test/hworld">
       test
     </NuxtLink>
-    <NuxtLink v-if="user.tag == 'not logged in'" to="/login">
+    <NuxtLink v-if="user.status.value !== 'authenticated'" to="/login">
       not logged in
     </NuxtLink>
-    <p v-else>
-      user: {{ user.name }}
+    <p v-else style="color: white;">
+      user: {{ user.data.value?.user?.name ?? 'No Name' }}
     </p>
   </div>
 </template>

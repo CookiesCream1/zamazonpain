@@ -1,12 +1,9 @@
 <script setup lang="ts">
-import { useUserStore } from '~/data/User'
-
-const user = useUserStore()
-const { data } = useAuthState()
+const { signIn } = useAuth()
 </script>
 
 <template>
-  <form class="spinnin login" @submit.prevent="user.login()">
+  <form class="spinnin login" @submit.prevent="signIn('google')">
     <input id="name" type="text" class="loginInput" placeholder="Name">
     <input
       id="pass"
@@ -17,7 +14,6 @@ const { data } = useAuthState()
     <button type="submit" class="submit">
       Submit
     </button>
-    {{ data?.user?.id }}
   </form>
 </template>
 
