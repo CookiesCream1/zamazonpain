@@ -16,5 +16,11 @@ export default defineNuxtConfig({
   ],
   eslint: {
     fix: true
+  },
+  runtimeConfig: {
+    turso: {
+      url: process.env.turso_url,
+      authToken: process.env.turso_auth_token
+    }
   }
 })
