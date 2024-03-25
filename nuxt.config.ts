@@ -19,8 +19,8 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     turso: {
-      url: process.env.turso_url,
-      authToken: process.env.turso_auth_token
+      url: process.env.localdb_url
+      // authToken: process.env.turso_auth_token
     }
   }
 })

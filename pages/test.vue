@@ -3,5 +3,5 @@ const result = useFetch('/api/db/init')
 </script>
 
 <template>
-  {{ result.data.value }}
+  <p>{{ result.data.value }}</p>
 </template>
