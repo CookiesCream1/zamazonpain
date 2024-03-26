@@ -3,7 +3,10 @@ const { signIn } = useAuth()
 </script>
 
 <template>
-  <form class="spinnin login" @submit.prevent="signIn('google')">
+  <form
+    class="spinnin login"
+    @submit.prevent="signIn('google')"
+  >
     <input id="name" type="text" class="loginInput" placeholder="Name">
     <input
       id="pass"

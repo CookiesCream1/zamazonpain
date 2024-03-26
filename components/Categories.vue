@@ -1,6 +1,6 @@
 <script setup lang="ts">
 defineProps<{
-  deparements: { name: string; checked: boolean }[];
+  categories: { name: string; checked: boolean }[];
   title: string;
 }>()
 </script>
@@ -9,14 +9,10 @@ defineProps<{
   <div class="alignment">
     <h3>{{ title }}</h3>
     <ul>
-      <li v-for="department in deparements" :key="department.name">
+      <li v-for="category in categories" :key="category.name">
         <div style="display: flex; gap: 0.5rem">
-          <input
-            :id="department.name"
-            v-model="department.checked"
-            type="checkbox"
-          >
-          <p>{{ department.name }}</p>
+          <input :id="category.name" v-model="category.checked" type="checkbox">
+          <p>{{ category.name }}</p>
         </div>
       </li>
     </ul>

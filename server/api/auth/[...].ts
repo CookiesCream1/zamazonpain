@@ -15,11 +15,20 @@ export default NuxtAuthHandler({
     strategy: 'jwt'
   },
   callbacks: {
-    jwt ({ token, user, account }) {
+    async jwt ({ token, user, account }) {
+      const client = await useDbClient()
+      let role = undefined
+      if (client && user) {
+        const userExists = await client.query('select user_id from users where users.user_id = ?;', user.id)
+        if (userExists.length === 0) {
+          await client.query('insert into users (user_id) values (?);', user.id)
+        }
+        role = await client.query('select * from users JOIN user_roles ON users.user_role = user_roles.role_id where users.user_id = ?;', user.id)
+      }
       return {
         ...token,
-        ...user,
-        ...account
+        user: {...user, role: role},
+        ...account,
       }
     },
     session ({ session, token }) {

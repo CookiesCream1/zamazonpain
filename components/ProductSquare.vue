@@ -10,7 +10,7 @@ defineProps<{
 
 <template>
   <div class="boundingbox">
-    <nuxt-img :src="imageLink" width="250px" />
+    <!-- <nuxt-img :src="imageLink" width="250px" /> -->
     <h3 style="padding-left: 5%">
       {{ title }}
     </h3>

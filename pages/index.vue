@@ -1,19 +1,23 @@
 <script setup lang="ts">
-import * as f from '../data/fakedata'
 definePageMeta({
   auth: false
 })
+const categories = (await useFetch('/api/db/category')).data
+// const products = useFetch('/api/db/products')
 </script>
 
 <template>
   <div class="toplevel">
     <Topbar class="topbar" />
-    <div class="sidebar">
-      <Departments v-for="department of f.departments" v-bind="department" :key="department.title" />
+    <div v-if="categories !== null" class="sidebar">
+      <Categories v-for="category of [categories]" v-bind="category" :key="category?.title ?? 'fail'" />
     </div>
-    <div class="main">
-      <ProductSquare v-for="product of f.products" v-bind="product" :key="product.title" />
+    <div v-else class="sidebar">
+      issue retrieving categories
     </div>
+    <!-- <div class="main">
+      <ProductSquare v-for="product of products" v-bind="product" :key="product.product_name" />
+    </div> -->
   </div>
 </template>
 
