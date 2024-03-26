@@ -1,23 +1,18 @@
 <script setup lang="ts">
 import * as f from '../data/fakedata'
+definePageMeta({
+  auth: false
+})
 </script>
 
 <template>
   <div class="toplevel">
     <Topbar class="topbar" />
     <div class="sidebar">
-      <Departments
-        v-for="department of f.departments"
-        v-bind="department"
-        :key="department.title"
-      />
+      <Departments v-for="department of f.departments" v-bind="department" :key="department.title" />
     </div>
     <div class="main">
-      <ProductSquare
-        v-for="product of f.products"
-        v-bind="product"
-        :key="product.title"
-      />
+      <ProductSquare v-for="product of f.products" v-bind="product" :key="product.title" />
     </div>
   </div>
 </template>

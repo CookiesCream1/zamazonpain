@@ -1,5 +1,3 @@
-import { defineStore } from 'pinia'
-
 type cartItem = {
   name: string;
   price: number;

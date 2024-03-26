@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const user = useAuthState()
+const { signOut } = useAuth()
 </script>
 
 <template>
@@ -18,9 +19,9 @@ const user = useAuthState()
     <NuxtLink v-if="user.status.value !== 'authenticated'" to="/login">
       not logged in
     </NuxtLink>
-    <p v-else style="color: white;">
+    <button v-else style="color: white;" @click="signOut()">
       user: {{ user.data.value?.user?.name ?? 'No Name' }}
-    </p>
+    </button>
   </div>
 </template>
 

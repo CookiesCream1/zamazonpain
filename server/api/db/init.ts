@@ -1,11 +1,9 @@
-import * as sql from "@libsql/client";
+import { useDbClient } from '~/composables/useDbClient'
 
-export default eventHandler(async function initDB() {
-  const config = useRuntimeConfig();
-  const client = sql.createClient(config.turso);
-  client.execute(".load ");
+export default defineCachedEventHandler(async function initDB () {
+  const client = await useDbClient()
 
-  const r = await client.execute("SELECT uuid4()");
+  const r = await client.query('SELECT 1')
 
-  return r.toJSON();
-});
+  return r
+})

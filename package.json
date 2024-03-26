@@ -10,9 +10,10 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@libsql/client": "^0.5.6",
     "@nuxt/ui": "^2.14.2",
     "@pinia/nuxt": "^0.5.1",
+    "@typescript-eslint/eslint-plugin": "^7.4.0",
+    "mariadb": "^3.3.0",
     "nuxt": "^3.10.3",
     "nuxt-rating": "^0.0.15",
     "pinia": "^2.1.7",
@@ -24,7 +25,6 @@
     "@nuxtjs/eslint-config-typescript": "^0.1.1",
     "@nuxtjs/eslint-module": "^4.1.0",
     "@sidebase/nuxt-auth": "^0.7.0",
-    "@typescript-eslint/eslint-plugin": "^7.2.0",
     "eslint": "^8.43.0",
     "eslint-plugin-vue": "^9.23.0"
   }

@@ -14,13 +14,26 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@sidebase/nuxt-auth'
   ],
+  pinia: {
+    storesDirs: ['./data/**']
+  },
+  auth: {
+    isEnabled: true,
+    provider: {
+      type: 'authjs'
+    },
+    globalAppMiddleware: {
+      isEnabled: true
+    }
+  },
   eslint: {
     fix: true
   },
   runtimeConfig: {
-    turso: {
-      url: process.env.localdb_url
-      // authToken: process.env.turso_auth_token
+    mariadb: {
+      host: process.env.db_host ?? (() => { throw new Error('db_host is undefined') })(),
+      user: process.env.db_user ?? (() => { throw new Error('db_user is undefined') })(),
+      password: process.env.db_pwd ?? (() => { throw new Error('db_pwd is undefined') })()
     }
   }
 })
