@@ -1,29 +1,28 @@
 <script setup lang="ts">
 defineProps<{
-  title: string;
-  detailText: string;
+  productName: string;
+  description: string;
   price: number;
   rating: number;
-  imageLink: string;
 }>()
 </script>
 
 <template>
   <div class="boundingbox">
-    <!-- <nuxt-img :src="imageLink" width="250px" /> -->
+    <USkeleton class="w-[250px] h-[250px]" />
     <h3 style="padding-left: 5%">
-      {{ title }}
+      {{ productName }}
     </h3>
     <div class="starfix">
       <NuxtRating :read-only="true" :rating-value="rating" />
     </div>
-    <p>{{ detailText }}</p>
+    <p>{{ description }}</p>
     <div class="priceContainer">
       <div>$</div>
       <div style="font-size: 2em; line-height: 2rem">
         {{ Math.floor(price) }}
       </div>
-      <div>{{ price * 100 - Math.floor(price) * 100 }}</div>
+      <div>{{ (+price).toFixed(2).substring((+price).toFixed(2).indexOf('.') + 1) }}</div>
     </div>
   </div>
 </template>

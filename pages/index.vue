@@ -3,11 +3,15 @@ definePageMeta({
   auth: false
 })
 const categories = (await useFetch('/api/db/category')).data
-// const products = useFetch('/api/db/products')
+const products = useFetch('/api/db/products').data
+const test = (await useFetch('/api/admin/test')).data
 </script>
 
 <template>
   <div class="toplevel">
+    <p class="h-16">
+      {{ test }}
+    </p>
     <Topbar class="topbar" />
     <div v-if="categories !== null" class="sidebar">
       <Categories v-for="category of [categories]" v-bind="category" :key="category?.title ?? 'fail'" />
@@ -15,9 +19,9 @@ const categories = (await useFetch('/api/db/category')).data
     <div v-else class="sidebar">
       issue retrieving categories
     </div>
-    <!-- <div class="main">
-      <ProductSquare v-for="product of products" v-bind="product" :key="product.product_name" />
-    </div> -->
+    <div class="main">
+      <ProductSquare v-for="product of products" v-bind="product" :key="product.productName" />
+    </div>
   </div>
 </template>
 

@@ -10,10 +10,10 @@ const { signOut } = useAuth()
     </NuxtLink>
     <input id="search" type="text" name="search">
     <label for="search">search?</label>
-    <NuxtLink to="/test/hworld">
-      test
+    <NuxtLink to="/admin">
+      admin
     </NuxtLink>
-    <NuxtLink to="/test/hworld">
+    <NuxtLink to="/test">
       test
     </NuxtLink>
     <NuxtLink v-if="user.status.value !== 'authenticated'" to="/login">
@@ -34,5 +34,6 @@ const { signOut } = useAuth()
   background-color: #000000;
   height: 4rem;
   padding: 1rem;
+  color: antiquewhite;
 }
 </style>

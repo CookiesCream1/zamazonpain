@@ -23,6 +23,14 @@ defineProps<{
 .alignment {
   display: flex;
   flex-direction: column;
+
+  h3 {
+    font-size: larger;
+  }
+
+  ul {
+    padding: 1rem;
+  }
 }
 
 .fix {

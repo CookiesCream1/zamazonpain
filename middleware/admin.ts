@@ -1,9 +1,8 @@
-import { useUserInfoStore } from '~/data/UserInfo'
-
 export default defineNuxtRouteMiddleware(async () => {
-  const user = useUserInfoStore()
-  if (await user.isAdmin()) {
+  const role = await $fetch('/api/user/role')
+  if (role === 'admin') {
     return
   }
+  console.log(role)
   return abortNavigation('Not authorized')
 })

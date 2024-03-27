@@ -12,6 +12,7 @@ export default defineNuxtConfig({
     'nuxt-rating',
     '@nuxtjs/eslint-module',
     '@nuxt/image',
+    '@nuxt/ui',
     '@sidebase/nuxt-auth'
   ],
   pinia: {

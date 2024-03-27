@@ -10,7 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@nuxt/ui": "^2.14.2",
+    "@nuxt/ui": "^2.15.0",
     "@pinia/nuxt": "^0.5.1",
     "@typescript-eslint/eslint-plugin": "^7.4.0",
     "mariadb": "^3.3.0",
