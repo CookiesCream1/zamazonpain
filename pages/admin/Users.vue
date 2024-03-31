@@ -1,8 +1,8 @@
 <script setup>
 definePageMeta({
-  auth: ['admin', 'auth']
+  middleware: ['admin', 'auth']
 })
-const users = await $fetch('/api/admin/users')
+const users = await useFetch('/api/admin/users')
 </script>
 
 <template>

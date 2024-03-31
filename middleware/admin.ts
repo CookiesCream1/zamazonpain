@@ -3,6 +3,5 @@ export default defineNuxtRouteMiddleware(async () => {
   if (role === 'admin') {
     return
   }
-  console.log(role)
   return abortNavigation('Not authorized')
 })

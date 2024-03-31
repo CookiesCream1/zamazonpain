@@ -7,15 +7,8 @@ const { signIn } = useAuth()
     class="spinnin login"
     @submit.prevent="signIn('google')"
   >
-    <input id="name" type="text" class="loginInput" placeholder="Name">
-    <input
-      id="pass"
-      type="password"
-      class="loginInput"
-      placeholder="Password"
-    >
     <button type="submit" class="submit">
-      Submit
+      log in with google
     </button>
   </form>
 </template>

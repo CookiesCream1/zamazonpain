@@ -2,16 +2,12 @@
 definePageMeta({
   auth: false
 })
-const categories = (await useFetch('/api/db/category')).data
-const products = useFetch('/api/db/products').data
-const test = (await useFetch('/api/admin/test')).data
+const categories = useFetch('/api/public/category').data
+const products = useFetch('/api/public/products').data
 </script>
 
 <template>
   <div class="toplevel">
-    <p class="h-16">
-      {{ test }}
-    </p>
     <Topbar class="topbar" />
     <div v-if="categories !== null" class="sidebar">
       <Categories v-for="category of [categories]" v-bind="category" :key="category?.title ?? 'fail'" />

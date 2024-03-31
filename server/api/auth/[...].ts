@@ -1,6 +1,5 @@
 import GoogleProvider from 'next-auth/providers/google'
 import { NuxtAuthHandler } from '#auth'
-import { useDbClient } from '~/composables/useDbClient'
 
 export default NuxtAuthHandler({
   secret: process.env.auth_secret,
@@ -15,11 +14,11 @@ export default NuxtAuthHandler({
     strategy: 'jwt'
   },
   callbacks: {
-    async jwt ({ token, user, account }) {
+    jwt ({ token, user, account }) {
       return {
         ...token,
         ...user,
-        ...account,
+        ...account
       }
     },
     session ({ session, token }) {

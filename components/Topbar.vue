@@ -10,7 +10,7 @@ const { signOut } = useAuth()
     </NuxtLink>
     <input id="search" type="text" name="search">
     <label for="search">search?</label>
-    <NuxtLink to="/admin">
+    <NuxtLink to="/admin/users">
       admin
     </NuxtLink>
     <NuxtLink to="/test">
