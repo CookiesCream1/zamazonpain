@@ -1,10 +1,13 @@
 <script setup lang="ts">
+import useCart from '@/data/cart'
 defineProps<{
+  productId: number;
   productName: string;
   description: string;
   price: number;
   rating: number;
 }>()
+const cart = useCart()
 </script>
 
 <template>
@@ -22,8 +25,22 @@ defineProps<{
       <div style="font-size: 2em; line-height: 2rem">
         {{ Math.floor(price) }}
       </div>
-      <div>{{ (+price).toFixed(2).substring((+price).toFixed(2).indexOf('.') + 1) }}</div>
+      <div>
+        {{
+          (+price).toFixed(2).substring((+price).toFixed(2).indexOf(".") + 1)
+        }}
+      </div>
     </div>
+    <button
+      @click="
+        cart.addItem(
+          { product_id: productId, product_name: productName, price },
+          1
+        )
+      "
+    >
+      buy
+    </button>
   </div>
 </template>
 

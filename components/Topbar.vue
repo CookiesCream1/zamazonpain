@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const user = useAuthState()
+const { data: role } = await useFetch('/api/user/role')
 const { signOut } = useAuth()
 </script>
 
@@ -13,14 +14,23 @@ const { signOut } = useAuth()
     <NuxtLink to="/admin/users">
       admin
     </NuxtLink>
+    <NuxtLink
+      v-if="user.status.value === 'authenticated' && role === 'admin'"
+      to="/admin/itemdashboard"
+    >
+      product dashboard
+    </NuxtLink>
     <NuxtLink to="/test">
       test
+    </NuxtLink>
+    <NuxtLink to="/cart">
+      Cart
     </NuxtLink>
     <NuxtLink v-if="user.status.value !== 'authenticated'" to="/login">
       not logged in
     </NuxtLink>
-    <button v-else style="color: white;" @click="signOut()">
-      user: {{ user.data.value?.user?.name ?? 'No Name' }}
+    <button v-else style="color: white" @click="signOut()">
+      user: {{ user.data.value?.user?.name ?? "No Name" }}
     </button>
   </div>
 </template>
