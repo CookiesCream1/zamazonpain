@@ -20,9 +20,6 @@ const { signOut } = useAuth()
     >
       product dashboard
     </NuxtLink>
-    <NuxtLink to="/test">
-      test
-    </NuxtLink>
     <NuxtLink to="/cart">
       Cart
     </NuxtLink>

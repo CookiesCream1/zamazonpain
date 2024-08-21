@@ -49,7 +49,7 @@ const { data: categories, status } = await useFetch('/api/public/category', {
       <UFormGroup v-if="status === 'success'" label="Category" name="category">
         <USelectMenu
           v-model="state.category"
-          :options="categories"
+          :options="categories as string[]"
           class="w-64"
         />
       </UFormGroup>

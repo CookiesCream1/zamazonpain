@@ -49,12 +49,24 @@ export default defineStore('cart', function () {
     items.value = []
   }
 
+  function updateItem (productId: number, count: number) {
+    const index = items.value.findIndex(item => item.product_id === productId)
+    if (index !== -1) {
+      if (count === 0) {
+        items.value.splice(index, 1)
+      } else {
+        items.value[index].count = count
+      }
+    }
+  }
+
   return {
     getItems,
     getItem,
     getTotal,
     removeItem,
     addItem,
+    updateItem,
     clear
   }
 })

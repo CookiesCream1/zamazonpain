@@ -23,7 +23,7 @@ const toggle = (id: number, OnOff: boolean) => {
     <NuxtLink to="itemdashboard/new">
       add new
     </NuxtLink>
-    <ul class="grid grid-cols-4">
+    <ul class="grid grid-cols-6 gap-6 p-8">
       <li v-for="product in products" :key="product.productName" class="flex">
         <div class="flex flex-col w-32 gap-2">
           <p>{{ product.productName }}</p>
