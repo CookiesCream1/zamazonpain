@@ -8,7 +8,7 @@ const { data: products, refresh } = await useFetch('/api/admin/products', {
 })
 const toggle = (id: number, OnOff: boolean) => {
   $fetch('/api/admin/products', {
-    method: 'POST',
+    method: 'PATCH',
     body: {
       id,
       OnOff
