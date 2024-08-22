@@ -76,6 +76,7 @@ CREATE TABLE `users` (
 	`user_id` VARCHAR(255) NOT NULL COLLATE 'latin1_swedish_ci',
 	`user_role` INT NOT NULL DEFAULT '5',
 	`created_at` TIMESTAMP NOT NULL DEFAULT (CURRENT_TIMESTAMP),
+	`email` VARCHAR(50) NOT NULL COLLATE 'latin1_swedish_ci',
 	PRIMARY KEY (`user_id`) USING BTREE,
 	INDEX `FK_UserRole` (`user_role`) USING BTREE,
 	CONSTRAINT `FK_UserRole` FOREIGN KEY (`user_role`) REFERENCES `user_roles` (`role_id`) ON UPDATE NO ACTION ON DELETE NO ACTION

@@ -53,5 +53,17 @@ export default defineNuxtConfig({
           throw new Error("MYSQLPORT is undefined");
         })(),
     },
+    mail: {
+      host: "smtp.gmail.com",
+      port: 587,
+      secure: false,
+      auth: {
+        user: "lemmensmano@gmail.com",
+        pass: "***",
+      },
+      tls: {
+        ciphers: "SSLv3",
+      },
+    },
   },
 });
