@@ -15,6 +15,7 @@ export default defineNuxtConfig({
     '@nuxt/ui',
     '@sidebase/nuxt-auth',
     '@unlok-co/nuxt-stripe'
+    
   ],
 
   pinia: {
@@ -90,4 +91,5 @@ export default defineNuxtConfig({
       }
     }
   }
+  
 })
