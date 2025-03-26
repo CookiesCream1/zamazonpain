@@ -1,31 +1,44 @@
 <script setup lang="ts">
 import useCart from '@/data/cart'
 const { getItems: items, getTotal: total, clear } = useCart()
-const checkout = async () => {
-  try {
-    const response = await $fetch('/api/public/checkout', {
-      method: 'POST',
-      body: {
-        total_price: total(),
-        product_arr: items().map(v => ({
-          product_id: v.product_id,
-          price: v.price,
-          count: v.count
-        }))
-      }
-    })
-
-    // The API now returns an object with a saleId property
-    const { saleId } = response
-
-    clear()
-    // Navigate to the cart edit page with the sale ID
-    await navigateTo({ path: '/cart/edit', query: { sale_id: saleId } })
-  } catch (error) {
-    console.error('Checkout failed:', error)
-    // Handle error (e.g., show an error message to the user)
+const { stripe } = useClientStripe()
+let ClientSecret: string | undefined
+const checkout = () => {
+  if (ClientSecret === undefined) {
+    return
   }
+  stripe.value.confirmPayment({
+    clientSecret: ClientSecret,
+    confirmParams: {
+      return_url: '/Edit.vue'
+    }
+  })
 }
+
+watch(
+  stripe,
+  async () => {
+    if (stripe.value) {
+      // https://github.com/stripe-samples/accept-a-payment/blob/main/payment-element/client/vue-cva/src/components/SrCheckoutForm.vue
+      const { clientSecret, error } = await $fetch(
+        '/api/public/createPaymentIntent',
+        { query: { amount: Math.floor(total() * 100), currency: 'czk' } }
+      )
+
+      if (error) {
+        console.error(error)
+        return
+      }
+      if (clientSecret !== null) {
+        ClientSecret = clientSecret
+      }
+    }
+  },
+  {
+    immediate: true
+  }
+)
+
 </script>
 
 <template>
@@ -45,32 +58,23 @@ const checkout = async () => {
           {{ item.price }}
         </div></span>
     </div>
-    <div
-      class="flex justify-end"
-      style="margin-right: 20px"
-    >
+    <div class="flex justify-end" style="margin-right: 20px">
       total of: {{ total() }}
     </div>
     <br>
     <div class="checkoutzone">
-      <UButton
-        class="px-2 py-1 bg-gray-200 rounded-md"
-        @click="clear()"
-      >
+      <UButton class="px-2 py-1 bg-gray-200 rounded-md" @click="clear()">
         clear cart
       </UButton>
-      <UButton
-        class="px-2 py-1 bg-gray-200 rounded-md"
-        @click="checkout"
-      >
+      <UButton class="px-2 py-1 bg-gray-200 rounded-md" @click="checkout">
         checkout
       </UButton>
     </div>
+    <div id="linkAuthenticationElement" />
   </div>
 </template>
 
 <style scoped>
-
 .checkoutzone {
   display: flex;
   justify-content: end;

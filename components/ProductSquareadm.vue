@@ -1,12 +1,6 @@
 <script setup lang="ts">
-defineProps<{
-  productId: number;
-  productName: string;
-  description: string;
-  price: number;
-  rating: number;
-  removed: number;
-}>()
+import products from '~/server/api/public/products'
+
 definePageMeta({
   middleware: ['admin', 'auth']
 })
@@ -22,6 +16,15 @@ const toggle = (id: number, OnOff: boolean) => {
     }
   }).then(() => refresh())
 }
+defineProps<{
+  productId: number;
+  productName: string;
+  description: string;
+  price: number;
+  rating: number;
+  removed: number;
+}>()
+
 </script>
 
 <template>
@@ -48,17 +51,20 @@ const toggle = (id: number, OnOff: boolean) => {
     <div
       class="px-2 py-1 bg-gray-200 rounded-md w-full flex justify-end bottom-0 right-0"
       style="background-color: antiquewhite; margin-bottom: 10px;"
-    >
-      <p>REMOVED: {{ product.removed === 0 ? "no" : "yes" }}</p>
-    </div>
-    <div class="flex flex-col w-32 gap-2">
-      <button @click="toggle(product.productId, false)">
-        remove
-      </button>
-      <button @click="toggle(product.productId, true)">
-        add back
-      </button>
-    </div>
+    />
+
+    <li v-for="product in products" :key="product.productName" class="flex">
+      <p>REMOVED: {{ removed === 0 ? "no" : "yes" }}</p>
+
+      <div class="flex flex-col w-32 gap-2">
+        <UButton @click="toggle(productId, false)">
+          remove
+        </UButton>
+        <UButton @click="toggle(productId, true)">
+          add back
+        </UButton>
+      </div>
+    </li>
   </div>
 </template>
 

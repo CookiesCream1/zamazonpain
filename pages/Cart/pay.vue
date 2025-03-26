@@ -1,12 +1,12 @@
 <script setup>
 import { ref } from 'vue'
 
-const newCard = ref('')
-const newCsv = ref('')
+// const newCard = ref('')
+// const newCsv = ref('')
 
 function submitForm () {
-  const csvValue = Number(newCsv.value)
-  const cardValue = Number(newCard.value)
+  // const csvValue = Number(newCsv.value)
+  // const cardValue = Number(newCard.value)
 }
 </script>
 
@@ -18,7 +18,11 @@ function submitForm () {
     <UInput type="text" />
 
     <label for="card">Číslo karty:</label>
-    <UInputNumber v-model="value" :min="100000000000" :max="999999999999" /><br><br>
+    <UInputNumber
+      v-model="value"
+      :min="100000000000"
+      :max="999999999999"
+    /><br><br>
 
     <label for="csv">CSV:</label>
     <UInputNumber v-model="value" :min="100" :max="9999" /><br><br>

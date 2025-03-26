@@ -1,9 +1,21 @@
-import { EventHandlerRequest, H3Event } from 'h3'
-import getTotal from '@/data/cart'
+import { defineEventHandler } from 'h3'
+import { useServerStripe } from '#stripe/server'
+import cartStore from '@/data/cart' // Ensure correct store import
 
 export default defineEventHandler(async (event) => {
   const stripe = await useServerStripe(event)
-  const orderAmount = getTotal
+  if (!stripe) {
+    throw new Error('Stripe instance could not be initialized.')
+  }
+
+  // Initialize Pinia store
+  const cart = cartStore()
+  const orderAmount = Number(cart.getTotal()) // Ensure it's a number
+
+  if (isNaN(orderAmount) || orderAmount <= 0) {
+    throw new Error('Invalid order amount.')
+  }
+
   let paymentIntent
 
   try {
@@ -19,12 +31,8 @@ export default defineEventHandler(async (event) => {
     }
   } catch (e) {
     return {
-      clientSecret: null,
-      error: e
+      clientSecret: null
+      // Return a readable error message
     }
   }
 })
-
-function useServerStripe (event: H3Event<EventHandlerRequest>) {
-  throw new Error('Function not implemented.')
-}
