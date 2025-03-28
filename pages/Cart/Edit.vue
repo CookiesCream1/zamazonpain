@@ -70,8 +70,5 @@ const updateItemQuantity = async (productId: number, quantity: number) => {
     <p class="container mx-auto px-4 mt-8 text-xl font-bold text-right">
       Total: ${{ total.toFixed(2) }}
     </p>
-    <<ULink to="/index.vue">
-      pay
-    </ULink>>
   </div>
 </template>
